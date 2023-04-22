@@ -21,4 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', inicio),
     path('AppCoder/', include('AppCoder.urls')),
+    path('crear_curso/', crear_curso),
+    path('agregar_profesor/', agregar_profesor),
 ]
