@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Curso, Profesor
+from .forms import ProfesorForm
 from django.http import HttpResponse
 
 # Create your views here.
@@ -31,9 +32,21 @@ def cursos(request):
 def estudiantes(request):
     return render(request, "AppCoder/Estudiantes.html")
 
-def profesores(request):
-    profesores = Profesor.objects.all()
-    context = {"profesores": profesores}
+def profesores(request):  #funcion para agregar profesor a el formulario
+    if request.method == "POST":
+        form = ProfesorForm(request.POST)
+        if form.is_valid():
+            profesor = Profesor()
+            profesor.nombre = form.cleaned_data['nombre']
+            profesor.apellido = form.cleaned_data['apellido']
+            profesor.email = form.cleaned_data['email']
+            profesor.profesion = form.cleaned_data['profesion']
+            profesor.save()
+            form = ProfesorForm()
+    else:
+        form = ProfesorForm
+    profesores = Profesor.objects.all() #llama todos la informacion contenida el objeto profesor y la muestra
+    context = {"profesores": profesores, "form": form}
     return render(request, "AppCoder/Profesores.html", context)
 
 def entregables(request):

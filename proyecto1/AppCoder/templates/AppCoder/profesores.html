@@ -8,19 +8,23 @@
 
 {% block contenido_que_cambia %}
 <h1>Profesores</h1>
-{% endblock %}
 
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    <input type="submit" value="Agregar">
+</form>
 <table>
     <thead>
-        <tbody>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Email</th>
-                <th>Profesion</th>
-            </tr>
-        </tbody>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Profesion</th>
+        </tr>
     </thead>
     <tbody>
         {% for profesor in profesores %}
@@ -44,3 +48,5 @@
         {% endfor %}
     </tbody>
 </table>
+
+{% endblock %}
