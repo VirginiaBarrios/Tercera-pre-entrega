@@ -5,3 +5,48 @@
 {% block titulo %}
     <h1>ENTREGABLES</h1>
 {% endblock %}
+
+{% block contenido_que_cambia %}
+<h1>Agregar entregable</h1>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    <input type="submit" value="Agregar">
+</form>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Fecha de entrega</th>
+            <th>Entregado</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for profesor in profesores %}
+        <tr>
+            <td>
+                {{entregable.id}}
+            </td>
+            <td>
+                {{entregable.nombre}}
+            </td>
+            <td>
+                {{entregable.apellido}}
+            </td>
+            <td>
+                {{entregable.fecha_entrega}}
+            </td>
+            <td>
+                {{entregable.entregado}}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

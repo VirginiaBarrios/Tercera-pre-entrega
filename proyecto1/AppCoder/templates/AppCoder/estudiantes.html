@@ -5,3 +5,44 @@
 {% block titulo %}
     <h1>BIENVENIDOS ESTUDIANTES</h1>
 {% endblock %}
+
+{% block contenido_que_cambia %}
+<h1>Agregar estudiantes</h1>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    <input type="submit" value="Agregar">
+</form>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for estudiante in estudiantes %}
+        <tr>
+            <td>
+                {{estudiante.id}}
+            </td>
+            <td>
+                {{estudiante.nombre}}
+            </td>
+            <td>
+                {{estudiante.apellido}}
+            </td>
+            <td>
+                {{estudiante.email}}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

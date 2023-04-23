@@ -1,36 +1,40 @@
 from django.shortcuts import render
-from .models import Curso, Profesor
-from .forms import ProfesorForm
+from .models import Curso, Profesor, Estudiante, Curso, Entregable
+from .forms import ProfesorForm, EstudianteForm, CursoForm, EntregableForm
 from django.http import HttpResponse
 
 # Create your views here.
 
-def crear_curso(request):
-    nombre_curso="JavaScript"
-    comision_curso=54345
-
-    curso=Curso(nombre=nombre_curso, comision=comision_curso)
-    curso.save()
-    respuesta=f"Curso creado --- {nombre_curso} - {comision_curso}"
-    return HttpResponse(respuesta)
-
-def agregar_profesor(request):
-    nombre_profesor="Miguel"
-    apellido_profesor="Rodriguez"
-    email_profesor="miguel@rodriguez.com"
-    profesion_profesor="Developer"
-
-    profesor=Profesor(nombre=nombre_profesor, apellido=apellido_profesor, email=email_profesor, profesion=profesion_profesor)
-    profesor.save()
-    respuesta=f"Profesor agregado --- {nombre_profesor} {apellido_profesor} - {profesion_profesor}"
-    return HttpResponse(respuesta)
-
-
 def cursos(request):
-    return render(request, "AppCoder/Cursos.html")
+    if request.method == "POST":
+        form = CursoForm(request.POST)
+        if form.is_valid():
+            curso = Estudiante()
+            curso.nombre = form.cleaned_data['nombre']
+            curso.comision = form.cleaned_data['comision']
+            curso.save()
+            form = CursoForm()
+    else:
+        form = CursoForm
+    estudiantes = Curso.objects.all() 
+    context = {"cursos": cursos, "form": form}
+    return render(request, "AppCoder/Cursos.html", context)
 
 def estudiantes(request):
-    return render(request, "AppCoder/Estudiantes.html")
+    if request.method == "POST":
+        form = EstudianteForm(request.POST)
+        if form.is_valid():
+            estudiante = Estudiante()
+            estudiante.nombre = form.cleaned_data['nombre']
+            estudiante.apellido = form.cleaned_data['apellido']
+            estudiante.email = form.cleaned_data['email']
+            estudiante.save()
+            form = EstudianteForm()
+    else:
+        form = EstudianteForm
+    estudiantes = Estudiante.objects.all() 
+    context = {"estudiantes": estudiantes, "form": form}
+    return render(request, "AppCoder/Estudiantes.html", context)
 
 def profesores(request):  #funcion para agregar profesor a el formulario
     if request.method == "POST":
@@ -50,10 +54,25 @@ def profesores(request):  #funcion para agregar profesor a el formulario
     return render(request, "AppCoder/Profesores.html", context)
 
 def entregables(request):
-    return render(request, "AppCoder/Entregables.html")
+    if request.method == "POST":
+        form = EntregableForm(request.POST)
+        if form.is_valid():
+            entregable = Entregable()
+            entregable.nombre = form.cleaned_data['nombre']
+            entregable.apellido = form.cleaned_data['apellido']
+            entregable.fecha_entrega = form.cleaned_data['fecha_entrega']
+            entregable.entregado = form.cleaned_data['entregado']
+            entregable.save()
+            form = EntregableForm()
+    else:
+        form = EntregableForm
+    entregables = Entregable.objects.all()
+    context = {"entregables": entregables, "form": form}
+    return render(request, "AppCoder/Entregables.html", context)
 
 def inicio(request):
-    return HttpResponse("Bienvenido a la página principal")
+    return render(request, "")
+
 
 def inicio_app(request):
     return render(request, "AppCoder/Inicio.html")

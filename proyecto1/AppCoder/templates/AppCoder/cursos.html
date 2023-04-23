@@ -5,3 +5,40 @@
 {% block titulo %}
     <h1>CURSOS</h1>
 {% endblock %}
+
+{% block contenido_que_cambia %}
+<h1>Agregar cursos</h1>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    <input type="submit" value="Agregar">
+</form>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Comision</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for curso in cursos %}
+        <tr>
+            <td>
+                {{curso.id}}
+            </td>
+            <td>
+                {{profesor.nombre}}
+            </td>
+            <td>
+                {{profesor.comision}}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
