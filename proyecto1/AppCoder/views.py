@@ -81,3 +81,14 @@ def inicio(request):
 def inicio_app(request):
     return render(request, "AppCoder/Inicio.html")
 
+def buscarEstudiante(request):
+    return render(request, "AppCoder/busquedaEstudiantes.html")
+
+def buscandoEstudiante(request):
+    apellidoIngresado = request.GET['apellido']
+    if apellidoIngresado!="":
+        estudiantes = Estudiante.objects.filter(apellido__icontains=apellidoIngresado)
+        print(estudiantes)
+        return render(request, "AppCoder/resultadosBusquedaEstudiantes.html", {"estudiantes": estudiantes})
+    else:
+        return render(request, "AppCoder/busquedaEstudiantes.html", {"mensaje": "Por favor ingrese un apellido"})
