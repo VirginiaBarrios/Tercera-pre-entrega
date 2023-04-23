@@ -9,16 +9,17 @@ def cursos(request):
     if request.method == "POST":
         form = CursoForm(request.POST)
         if form.is_valid():
-            curso = Estudiante()
+            curso = curso()
             curso.nombre = form.cleaned_data['nombre']
             curso.comision = form.cleaned_data['comision']
             curso.save()
             form = CursoForm()
     else:
         form = CursoForm
-    estudiantes = Curso.objects.all() 
+    cursos = Curso.objects.all() 
     context = {"cursos": cursos, "form": form}
     return render(request, "AppCoder/Cursos.html", context)
+
 
 def estudiantes(request):
     if request.method == "POST":
@@ -35,6 +36,7 @@ def estudiantes(request):
     estudiantes = Estudiante.objects.all() 
     context = {"estudiantes": estudiantes, "form": form}
     return render(request, "AppCoder/Estudiantes.html", context)
+
 
 def profesores(request):  #funcion para agregar profesor a el formulario
     if request.method == "POST":
@@ -53,6 +55,7 @@ def profesores(request):  #funcion para agregar profesor a el formulario
     context = {"profesores": profesores, "form": form}
     return render(request, "AppCoder/Profesores.html", context)
 
+
 def entregables(request):
     if request.method == "POST":
         form = EntregableForm(request.POST)
@@ -69,6 +72,7 @@ def entregables(request):
     entregables = Entregable.objects.all()
     context = {"entregables": entregables, "form": form}
     return render(request, "AppCoder/Entregables.html", context)
+
 
 def inicio(request):
     return render(request, "")
