@@ -79,7 +79,7 @@ def inicio(request):
 
 
 def inicio_app(request):
-    return render(request, "AppCoder/Inicio.html")
+    return render(request, "AppCoder/busquedaCursos.html")
 
 def buscarEstudiante(request):
     return render(request, "AppCoder/busquedaEstudiantes.html")
