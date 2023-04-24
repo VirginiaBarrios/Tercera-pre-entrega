@@ -1,0 +1,18 @@
+{% extends "AppCoder/padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+    <h1>BÚSQUEDA DE ENTREGABLES</h1>
+{% endblock %}
+
+{% block contenido_que_cambia %}
+<h2>Fomulario de búsqueda de entregables por apellido</h2>
+
+<h3>{{ mensaje }}</h3>
+
+<form action="{% url 'buscandoEntregable' %}" method="GET">
+    <input type="text" name="apellido" id="apellido" placeholder="Ingrese Apellido">
+    <input type="submit" value="Buscar entregable">
+</form>
+{% endblock %}

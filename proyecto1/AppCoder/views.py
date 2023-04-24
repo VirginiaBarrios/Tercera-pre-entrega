@@ -92,3 +92,42 @@ def buscandoEstudiante(request):
         return render(request, "AppCoder/resultadosBusquedaEstudiantes.html", {"estudiantes": estudiantes})
     else:
         return render(request, "AppCoder/busquedaEstudiantes.html", {"mensaje": "Por favor ingrese un apellido"})
+
+
+def buscarCurso(request):
+    return render(request, "AppCoder/busquedaCursos.html")
+
+def buscandoCurso(request):
+    comisionIngresada = request.GET['comision']
+    if comisionIngresada!="":
+        cursos = Curso.objects.filter(comision__icontains=comisionIngresada)
+        print(cursos)
+        return render(request, "AppCoder/resultadosBusquedaCursos.html", {"cursos": cursos})
+    else:
+        return render(request, "AppCoder/resultadosBusquedaCursos.html", {"mensaje": "Por favor ingrese un curso"})
+
+
+def buscarProfesor(request):
+    return render(request, "AppCoder/busquedaProfesores.html")
+
+def buscandoProfesor(request):
+    apellidoIngresado = request.GET['apellido']
+    if apellidoIngresado!="":
+        profesores = Profesor.objects.filter(apellido__icontains=apellidoIngresado)
+        print(profesores)
+        return render(request, "AppCoder/resultadosBusquedaProfesores", {"profesores": profesores})
+    else:
+        return render(request, "AppCoder/ResultadosbusquedaProfesores.html", {"mensaje": "Por favor ingrese un apellido"})
+
+
+def buscarEntregable(request):
+    return render(request, "AppCoder/busquedaEntregables.html")
+
+def buscandoEntregable(request):
+    apellidoIngresado = request.GET['apellido']
+    if apellidoIngresado!="":
+        entregables = Entregable.objects.filter(apellido__icontains=apellidoIngresado)
+        print(entregables)
+        return render(request, "AppCoder/resultadosBusquedaEntregables.html", {"entregables": entregables})
+    else:
+        return render(request, "AppCoder/busquedaEntregables.html", {"mensaje": "Por favor ingrese un apellido"})

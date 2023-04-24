@@ -3,38 +3,34 @@
 {% load static %}
 
 {% block titulo %}
-    <h1 class="mb-5">RESULTADOS BUSQUEDA DE ESTUDIANTES</h1>    
+    <h1 class="mb-5">RESULTADOS BUSQUEDA DE CURSO</h1>    
 {% endblock %}
 
 
 {% block contenido_que_cambia %}
 
-{% if estudiantes %}
+{% if cursos %}
 
-<h2>Listado de estudiantes</h2>
+<h2>Listado de cursos</h2>
 <table>
     <thead>
         <tr>
             <th>ID</th>
             <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Email</th>
+            <th>Comision</th>
         </tr>
     </thead>
     <tbody>
-        {% for estudiante in estudiantes %}
+        {% for curso in cursos %}
         <tr>
             <td>
-                {{estudiante.id}}
+                {{curso.id}}
             </td>
             <td>
-                {{estudiante.nombre}}
+                {{curso.nombre}}
             </td>
             <td>
-                {{estudiante.apellido}}
-            </td>
-            <td>
-                {{estudiante.email}}
+                {{curso.comision}}
             </td>
         </tr>
         {% endfor %}
@@ -42,7 +38,7 @@
 </table>
 {% else %}
 
-<h2>NO HAY ESTUDIANTES QUE RESPONDAN A ESA BUSQUEDA</h2>
+<h2>NO HAY CURSOS QUE RESPONDAN A ESA BUSQUEDA</h2>
 
 {% endif %}
 

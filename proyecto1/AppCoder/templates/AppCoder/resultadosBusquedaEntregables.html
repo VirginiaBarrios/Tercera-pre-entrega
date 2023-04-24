@@ -3,38 +3,38 @@
 {% load static %}
 
 {% block titulo %}
-    <h1 class="mb-5">RESULTADOS BUSQUEDA DE ESTUDIANTES</h1>    
+    <h1 class="mb-5">RESULTADOS BUSQUEDA DE ENTREGABLES</h1>    
 {% endblock %}
 
 
 {% block contenido_que_cambia %}
 
-{% if estudiantes %}
+{% if entregables %}
 
-<h2>Listado de estudiantes</h2>
+<h2>Listado de entregables</h2>
 <table>
     <thead>
         <tr>
             <th>ID</th>
             <th>Nombre</th>
             <th>Apellido</th>
-            <th>Email</th>
+            <th>Entregable</th>
         </tr>
     </thead>
     <tbody>
-        {% for estudiante in estudiantes %}
+        {% for entregable in entregables %}
         <tr>
             <td>
-                {{estudiante.id}}
+                {{entregable.id}}
             </td>
             <td>
-                {{estudiante.nombre}}
+                {{entregable.nombre}}
             </td>
             <td>
-                {{estudiante.apellido}}
+                {{entregable.apellido}}
             </td>
             <td>
-                {{estudiante.email}}
+                {{entregable.entregable}}
             </td>
         </tr>
         {% endfor %}
@@ -42,7 +42,7 @@
 </table>
 {% else %}
 
-<h2>NO HAY ESTUDIANTES QUE RESPONDAN A ESA BUSQUEDA</h2>
+<h2>NO HAY ENTREGABLES QUE RESPONDAN A ESA BUSQUEDA</h2>
 
 {% endif %}
 

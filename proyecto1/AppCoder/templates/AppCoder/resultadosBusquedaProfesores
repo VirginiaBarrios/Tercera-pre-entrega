@@ -3,15 +3,17 @@
 {% load static %}
 
 {% block titulo %}
-    <h1 class="mb-5">RESULTADOS BUSQUEDA DE ESTUDIANTES</h1>    
+    <h1>BIENVENIDOS PROFESORES</h1>
+
+    <h1 class="mb-5">RESULTADOS BUSQUEDA DE PROFESORES</h1>    
 {% endblock %}
 
 
 {% block contenido_que_cambia %}
 
-{% if estudiantes %}
+{% if profesores %}
 
-<h2>Listado de estudiantes</h2>
+<h2>Listado de profesores</h2>
 <table>
     <thead>
         <tr>
@@ -19,22 +21,26 @@
             <th>Nombre</th>
             <th>Apellido</th>
             <th>Email</th>
+            <th>profesion</th>
         </tr>
     </thead>
     <tbody>
-        {% for estudiante in estudiantes %}
+        {% for profesor in profesores %}
         <tr>
             <td>
-                {{estudiante.id}}
+                {{profesor.id}}
             </td>
             <td>
-                {{estudiante.nombre}}
+                {{profesor.nombre}}
             </td>
             <td>
-                {{estudiante.apellido}}
+                {{profesor.apellido}}
             </td>
             <td>
-                {{estudiante.email}}
+                {{profesor.email}}
+            </td>
+            <td>
+                {{profesor.profesion}}
             </td>
         </tr>
         {% endfor %}
@@ -42,7 +48,7 @@
 </table>
 {% else %}
 
-<h2>NO HAY ESTUDIANTES QUE RESPONDAN A ESA BUSQUEDA</h2>
+<h2>NO HAY PROFESORES QUE RESPONDAN A ESA BUSQUEDA</h2>
 
 {% endif %}
 
