@@ -9,7 +9,7 @@ def cursos(request):
     if request.method == "POST":
         form = CursoForm(request.POST)
         if form.is_valid():
-            curso = curso()
+            curso = Curso()
             curso.nombre = form.cleaned_data['nombre']
             curso.comision = form.cleaned_data['comision']
             curso.save()
